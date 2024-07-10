@@ -5,3 +5,5 @@ rootProject.name = "PixelAI"
 include("app")
 include("core:api")
 findProject(":core:api")?.name = "api"
+include("features:posts")
+findProject(":features:posts")?.name = "posts"
