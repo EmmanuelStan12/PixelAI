@@ -1,21 +1,27 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm") version "1.9.23"
 }
 
-group = "com.bytebard"
-version = "1.0-SNAPSHOT"
+allprojects {
+    group = "com.bytebard"
+    version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "17"
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
+subprojects {
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 }
