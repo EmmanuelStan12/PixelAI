@@ -8,4 +8,5 @@ plugins {
 
 dependencies {
     implementation(project(":features:posts"))
+    implementation(project(":core:api"))
 }
